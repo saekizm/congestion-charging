@@ -1,0 +1,156 @@
+
+
+
+
+
+Introduction to
+
+The London Congestion Charge Solution Case Study
+
+
+
+
+
+
+
+
+
+
+
+
+
+Background to the case study
+This Congestion Charging System case study was originally developed by IBM and Warwick Business School.  All background, requirements and specifications in this document are essentially fictional and should be taken as such, however they are informed by the by experience of the real London Congestion Charging system, developed and run by IBM on behalf of Transport for London (TfL) since November 2009, and other such systems that IBM has built around the world.
+This case study places you in the position of being the IT Architects responsible for the new design of the Congestion Charge solution in the year 2008.  As you read this document, in preparation for the case study, remember that your objective is to present a solution proposal at the end of the workshop to TfL’s Management and Technical Design Authority Board (roles played by the workshop tutors) as it will form the basis for deciding whether to proceed with the project or not.  The Mayor of London himself may even be present as well !
+It is important to remember that there are many ways to satisfy the requirements of the client, and as much weight will be given to the technical and architectural justifications you give for each of your decisions (i.e. demonstration of the thought process), as to the proposed architecture itself.
+
+
+
+
+
+
+
+
+
+
+
+
+Setting the Scene
+You…
+You are an architect in the team recently working on a proposal to build a new Congestion Charging system for London.  Whilst a Congestion Charging system already exists within London, it is now considered old, heavily constrained, and very expensive for Transport for London (TfL) to run and operate.  It also does not meet future aspirations to use the system to potentially support other charging schemes in London and even elsewhere.  TfL therefore have contracted your company to replace the existing system with a completely new solution which reduces their overall costs to administer the congestion charging system, and which makes use of modern techniques and technologies to provide greater business control and future flexibility.
+You will, hopefully, later be responsible for the system’s subsequent development and implementation – but that’s another story!
+Your reputation and expertise has meant that the Project Manager was prepared to wait for you to finish a prior engagement, and you join the solution architecture team shortly after the project definition meeting with the client.  Many key interviews and meetings have been conducted with key contact from Transport for London’s Overground Transport Division and most of the background and key objectives have already been captured ….
+A brief history of London Congestion Charging
+In 1995, an initiative entitled the “London Congestion Research Programme” concluded that the city's economy would benefit from a road user charging scheme. The power to introduce a form of congestion charge was given to any future mayor in the Greater London Authority Act 1999. Having won the first mayoral election in 2000, Ken Livingstone opted to exercise these powers as promised in his independent manifesto, and carried out a series of consultations with interested parties.  The basic scheme was agreed in February 2002, and charging commenced, with some concessions accepted, on 17 February 2003.  By law all surpluses raised must be reinvested into London's transport infrastructure and it was anticipated that this would be around £200m.  On introduction, the scheme was the largest ever undertaken by a capital city across the world. 
+After the introduction of the charge, there were a number of suggestions for its future. Soon after charging commenced, the Mayor announced that he would carry out a formal review of the charge's success or failure six months after its introduction.  On 25 February 2003 Livingstone stated, "I can't conceive of any circumstances in the foreseeable future where we would want to change the charge, although perhaps ten years down the line it may be necessary" referring to the amount that drivers have to pay, indicating that £5 was sufficient to bring about the reduction in traffic that he had hoped for. However in subsequent years the basic charge was nevertheless increased. A rise to £8 was announced formally on 1 April 2005.  On 10 May 2006, in a live TV debate, Livingstone supported a rise in the charge to £10 by 2008.
+The vision for the system however has already remained the same - an efficient and effective mechanism that is minimalistic whilst easy to operate, that achieves the necessary control and more than pays for itself, with ‘profits’ being reinvested to improve transportation in all parts of the city.
+
+Why a new Congestion Charging system?
+Transport for London originally contracted the design, development and operation of the Congestion Charging system to another large IT services company and the original system has now been running for 4 years.  Over this time however, TfL have expanded their understanding of what they really require from the system’s design and have come to realise that the existing system must be completely replaced rather that modified in order to meet their future objectives.  At the end of the current 5-year contract, they expect to transition to the new system, hopefully provided by us (!), in a single, critical transition weekend.
+Here are some of the key reasons TfL have stated that they wish to build a brand-new system – bear these in mind as you architect the new one, as otherwise you will not be providing them with a solution which meets their key objectives:
+Probably the primary reason TfL are interested in a brand new system is to achieve a reduced cost to operate the Congestion Charging zone.  Any money saved in running the system means greater revenue raised per day on average, which means more money to spend on other cleaner forms of transport within the city each year.
+Strengthening enforcement processes – TfL found that when customer did not pay either the original charge, or the penalty charge they were subsequently issued with, in some cases it was difficult to use system data to support a cast-iron case for prosecuting non-payers.  This means TfL are extremely interested in ‘evidential integrity’ – i.e. being able if required to present a trail of undeniable evidence in a court of law in relation to any one disputed case.
+Whilst the primary purpose of the system is to charge individuals for entering the London Congestion Charging zone, TfL also wish to have the ability to add other charging schemes in future on the same basic infrastructure.  Those future schemes may vary in their geographic coverage and business rules (e.g. deciding who is eligible to be charged), however TfL foresee expect that one single IT systems architecture can be developed which meets the generic requirement of road user charging.  Who knows – TfL may offer their services to other cities in the future and make even more money!
+System scalability – TfL are concerned that the old system was reaching its capacity limits and would not be able to cope with the future performance and capacity requirements within London or – if the system is extended – to cope with other future charging schemes.
+Better Management Information – TfL know that the information regarding the movement of vehicles within the Congestion Charging Zone, plus all data related to customer accounts and payments, is extremely valuable both for the effective management of the system and for wider TfL transport planning purposes.  They wish to ensure that the new system will provide a flexible and timely means of reporting on all the data which the system accesses.
+
+
+
+Notes from the Project Definition Workshop
+From: 	Bill.Jinks, Project Manager.
+To: 	Project team
+Date:	1/Jun/2008
+Welcome to the Congestion Charging System project!  You are probably quite excited having read the introduction, and are no doubt eager to get on with the work.
+The information surrounding the new system to be built is currently of a commercially confidential nature so you should take care to maintain confidentiality when working with colleagues.
+I have put together a set of useful overview information about the project from the recent project meetings we have had prior to your arrival on the team.  This includes a high-level definition of both the scope of the new system – I have to say, it is already looking quite complex ...
+...
+
+
+What  (Scope & Key requirements)
+The Congestion Charging System has the following key scope requirements:
+Charge road users for travelling within the defined Congestion Charging zone within London’s city centre.  This apparently simple task is of course the central aim and is expected to continue to be an effective way to achieve the policy goal to control congestion in central London whilst raising money for other causes.
+The hours of charging are 07:00 to 18:00, Monday to Friday, excluding public holidays and Christmas Day to New Year’s Day inclusive.  Whilst this it the current charging policy, TfL reserve the right to change these hours at any point in the future and therefore the system should be able to easily cope with this without redesign.
+In order to drive the charging process, the overall system must be able to capture and process number plates, storing accurately date/time-stamped information about the detection of a vehicle within the city centre, both as a structured digital data record and as one or more related photographic images.  Note that this of course involves attempting to read number plates from the roadside images at some tier of the architecture – note that image quality can vary quite a bit.
+The system must offer a number of key means (or ‘channels’) of payment to customers – the payment channels TfL have mandated as required are:
+Payment by Telephone – a new Call Centre is envisaged which will be staffed by trained Customer Service Representatives (CSRs) who will take customer calls and process charge payments
+By Internet – customer should be able to access a well publicised and easy to use web-site and pay the charge for a given day or set of days via a secure internet connection, using any standard credit or debit card
+Via SMS (text message) – customers, having previously registered for this service, should be able to conveniently text a specific short number with some identifying piece of information in order to initiate a payment for their vehicle.
+Offer discounts and exemptions for specific cases.  Specifically, the following cases are to be initially catered for:
+Vehicles with a CO2 emission rating of 100g/km or less and that meet the Euro 5 standard for air quality qualify for a 100 per cent discount.
+Customers who live within the zone can register as Residents and then qualify for a 90% discount.
+Blue Badge holders – those with mobility problems and who are in possession of Department for Transport ‘Blue Badges’ are also eligible for a 100% discount if they register these with TfL.  Only one vehicle may be nominated to be associated with a Blue Badge at a given time.
+Ensure accurate charging and penalty decisions – this involves comparing received Detection Event data with received payments, taking account of exemptions, and so forth.
+When the system decides a penalty charge may be due, the system must send notice of this to a separate Enforcement Operations system.  Enforcement Operations follow a process (which can sometimes be very long) to validate the proposed PCNs, issue penalties to non-paying road users, and follow up with other means those who do not pay the penalties.  This is contracted for separately by TfL however there is clearly a very important interface between your system and Enforcement Operations.
+
+The Congestion Charging System has a specific focus, but should make the maximum use of supporting data or processes that already exist. For example, it is known that dedicated links with the UK’s Driver and Vehicle Licensing Agency (DVLA) already exist and this interface to the DVLA will be reused in the new system.
+
+
+
+Understanding the Congestion Charging System workflow
+From:	Andrew Martin (Business Architect from TfL) To: 	Project team
+Dear Team,
+I felt that it might be useful to brief you on the fundamental workflow of the congestion charging system, in order that you can ensure that all elements of the system will work in harmony. It should help you to understand the general processes involved, opening up some avenues for employing appropriate architecture techniques.
+Clearly there are different situations that apply to different types of user (e.g. company or individual), different ways of paying the charge (e.g. pay via the Call Centre, or on-line), as well as various eventualities that need accommodating (e.g. exempted vehicles such as low emission vehicles, unpaid charges).  So although it is more complex than this, the fundamental business process is as follows:
+
+
+
+Project constraints (budget, time-scale, integration etc.)
+As with any government project, TfL are aiming to manage the implementation of the new Congestion Charging system to tight time and budget constraints.  The Mayor has already announced the new system will go live on November 1st 2009 (this is non-negotiable!) and will cost less than the original system to build and run.
+They know they need a robust, flexible system that will last for years – that’s why they engaged us! 
+TfL has largely outsourced IT operations for major systems in recent years but they retain a significant IT Architecture function internally and will be reviewing everything that is produced.  Therefore a high quality architecture is required – there is no pulling the wool over their eyes.
+It is up to you to decide the extent to which the Congestion Charging System should be self-contained. In any case however, we will need to make sure it fits smoothly with existing and future IT investments.
+The TfL are aware that we have experience of congestion charging systems in other parts of the world, and therefore are expecting that we will present interesting ideas of possible architectures and technologies which can be used to build this system effectively. 
+Key Existing Systems Interfaces
+From:	Ivor Speck (Integration Architect from TfL) To: 	Project team
+Please find below some information on the key systems interface TfL is expecting you will want to include in the systems design.
+As you will probably be aware, the current congestion charging system uses a number of important interfaces to other systems within the UK to support the required congestion charging system processes.  A number of these are being retained, or replaced with equivalents.  The following table describes some of the main external systems which you can expect to have available to interface with, including the services they offer and the types of data which can be sent or received from them.  I understand from your Project Director that you are planning to use IBM Payment Systems as the payments provided so I have included this already in the below.
+
+
+
+Note that this may not be a comprehensive list of all the external systems or parties that the new system may need to interact with – if you believe there are any other keys ones, you should identify these and include them in your systems design.
+If you have any further questions on the above, please do not hesitate to contact me.
+Outline Non-Functional Requirements (Qualities and Constraints)
+From:	Giles Dring  (Operations Architect from TfL) To: 	Project team
+Dear IBM team,
+I have been asked to give you an overview of some of the key non-functional requirements which apply to the congestion charging system.  Bear in mind we have experience of running this scheme for the past five years, so we are very sure that these are critical drivers of the new system’s design.
+There will be need to measurement against these requirements in live operations and as you may be aware from the commercial side of things, there may be service penalties for your company if the system fails to meet the targets.
+Performance & Scalability
+
+High Availability and Disaster Recovery
+
+
+Security and Audit
+
+
+Flexibility
+
+
+
+
+Other notes
+Memo from an IBM City Solutions Consultant
+
+From:   	Zack Mann / (IBM Smarter Cities Consultant)  To: 	Project Team
+
+Hi from Sweden !  Although I know the London roadside Detection Event infrastructure is being provided by TfL’s existing 3rd-party, and you do not need to include that part in your solution for TfL, you may be interested to know how the road side camera infrastructure works here: see http://www.ibm.com/podcasts/howitworks/040207/index.shtml that explains how our scheme works in Stockholm.
+
+Data Centre Locations and related concerns
+From:  	Toby Thurston (IBM Client IT Architect) To: 	Project Team
+You may be interested in some information I have about the current data centre situation as it may inform some of your decisions and proposals on the overall Operational Model for Congestion Charging.
+TfL do have an existing data centre within the centre of London and this is where many of their thirdparties and the current congestion charging system are mainly hosted. However I understand data centre space there is very limited – not sure if we would be able to agree with them the installation of a large amount of new hardware in the same location – I suggest further investigation.
+The current system’s call centre is located in Coventry however that is owned and run by another company all together – clearly we will have to expand one of our own existing Call Centre locations or build a new one.  Though it does raise the thought of how we obtain the right volume of appropriately trained staff for go-live and beyond – do you know whether it is planned to transition the hundreds of CSRs who already know Congestion Charging very well to us??
+Kind regards,
+Toby
+
+Out of Scope
+As you can appreciate from all of the above information, there is plenty to think about!  However there are some things which, for clarity, in the context of this case study you do not need to spend time designing for (although in the real project, some of these were major concerns):
+Migration of data from the old system – a separate sub-project has been initiated to understand what data needs to be migrated from the old Congestion Charging system to the new one.  This is a substantial and complex undertaking – however you can consider it out of scope for your purposes as it is a one-time activity and has no fundamental bearing on the target architecture.
+Retraining of staff who used to work on the old system and who will perform similar roles in the context of the new system.
+As explained above, the road-side camera infrastructure (Detection Event Infrastructure or “DEI”) will remain unchanged from the old system and will continue to be managed by one of TfL’s third parties – we do not need to design or implement it.  The only thing of concern to us is the interface to the Detection Event Infrastructure for the receiving of detection events which fundamentally drive the system.
+You do not need to concern yourself with the interface to any banks or the real movement of monies into TfL’s bank accounts – the only financially related interface you are concerned with is that to the Payment Services Provider as detailed above.
+There are many other discount types and exception for different types of vehicles and customers in the real system – you only need to consider the specific exemptions and discounts which were detailed above.
+
+
+
+
+***  End  ***￼ And indeed, this rise was later introduced by his successor Boris Johnson in January 2010 ;-)￼ Note in the parlance of those who work in this area, vehicle number plates are referred to as “VRMs” – Vehicle Registration Marks
